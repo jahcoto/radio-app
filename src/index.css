@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: o;
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+}
+
+.btn {
+  margin: 10px 10px;
+  background-color: #21295c;
+  color: fff;
+}
+
+.card {
+  background-color: #21295c;
+  margin: 10px 20px;
+  height: 175px;
+  width: 300px;
+  position: relative;
+}
+
+.card-header {
+  position: absolute;
+  left: 150px;
+  margin: 10px;
+}
+
+.card-header h6 {
+  font-size: 12px;
+  color: #fff;
+}
+
+.card-body {
+  height: 150px;
+}

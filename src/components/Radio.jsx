@@ -1,5 +1,9 @@
-import { RadioBrowserApi } from "radio-browser-api";
 import { useEffect, useState } from "react";
+import { RadioBrowserApi } from "radio-browser-api";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
+import img from "../img/radio.jpg";
+
 const Radio = () => {
   const [stationType, setStationType] = useState("all");
   const [stations, setStations] = useState("");
@@ -33,7 +37,65 @@ const Radio = () => {
     console.log(stations);
   }, [stationType]);
 
-  return <div>Radio</div>;
+  const setImage = (event) => {
+    event.target.src = img;
+  };
+
+  return (
+    <div>
+      <div className="row">
+        {types.map((type, index) => {
+          return (
+            <span className="col">
+              <button
+                className="btn btn-primary"
+                key={index}
+                onClick={() => setStationType(type)}>
+                {type}
+              </button>
+            </span>
+          );
+        })}
+      </div>
+      <div>
+        <div className="row">
+          {stations &&
+            stations.map((station, index) => {
+              return (
+                <div className="col col-lg-3 col-md-6 col-sm-12" key={index}>
+                  <div className="card">
+                    <img
+                      style={{ width: 80, height: 80 }}
+                      className="card-img-top"
+                      src={station.favicon}
+                      alt=""
+                      onError={setImage}
+                    />
+                    <div className="card-header">
+                      <h6>{station.name}</h6>
+                    </div>
+                    <div className="card-body">
+                      <AudioPlayer
+                        className="player"
+                        src={station.urlResolved}
+                        showJumpControls={false}
+                        layout="stacked"
+                        customProgressBarSection={[]}
+                        customControlsSection={[
+                          "MAIN_CONTROLS",
+                          "VOLUME_CONTROLS",
+                        ]}
+                        autoPlayAfterSrcChange={false}
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Radio;

@@ -2,19 +2,21 @@ import { useEffect, useState } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import CountryList from "./CountryList";
 import img from "../img/radio.jpg";
 
 const Radio = () => {
   const [stationType, setStationType] = useState("all");
   const [stations, setStations] = useState("");
+  const [sountryCode, setCountryCode] = useState("");
   const setupApi = async (stationType) => {
     const api = new RadioBrowserApi(fetch.bind(window), "Radio Player");
     const stations = await api.searchStations({
-      language: "english",
       tag: stationType,
       limit: 32,
+      countryCode: "CR",
     });
-    console.log(stations);
+    // console.log(stations);
 
     setStations(stations);
   };
@@ -43,7 +45,8 @@ const Radio = () => {
 
   return (
     <div>
-      <div className="row">
+      <CountryList />
+      {/* <div className="row">
         {types.map((type, index) => {
           return (
             <span className="col">
@@ -56,14 +59,14 @@ const Radio = () => {
             </span>
           );
         })}
-      </div>
+      </div> */}
       <div>
-        <div className="row">
+        <div className="row mx-auto">
           {stations &&
             stations.map((station, index) => {
               return (
                 <div className="col col-lg-3 col-md-6 col-sm-12" key={index}>
-                  <div className="card">
+                  <div className="card sm:w-100">
                     <img
                       style={{ width: 80, height: 80 }}
                       className="card-img-top"

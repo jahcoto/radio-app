@@ -8,13 +8,13 @@ import img from "../img/radio.jpg";
 const Radio = () => {
   const [stationType, setStationType] = useState("all");
   const [stations, setStations] = useState("");
-  const [sountryCode, setCountryCode] = useState("");
+  const [countryCode, setCountryCode] = useState("");
   const setupApi = async (stationType) => {
     const api = new RadioBrowserApi(fetch.bind(window), "Radio Player");
     const stations = await api.searchStations({
       tag: stationType,
       limit: 32,
-      countryCode: "CR",
+      countryCode: countryCode,
     });
     // console.log(stations);
 
@@ -36,8 +36,8 @@ const Radio = () => {
 
   useEffect(() => {
     setupApi(stationType);
-    console.log(stations);
-  }, [stationType]);
+    console.log(countryCode);
+  }, [countryCode]);
 
   const setImage = (event) => {
     event.target.src = img;
@@ -45,7 +45,7 @@ const Radio = () => {
 
   return (
     <div>
-      <CountryList />
+      <CountryList setCountryCode={setCountryCode} />
       {/* <div className="row">
         {types.map((type, index) => {
           return (

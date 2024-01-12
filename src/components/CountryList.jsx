@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const CountryList = () => {
+const CountryList = (props) => {
   const countries = [
     { code: "BD", name: "Bangladesh" },
     // BE: "Belgium",
@@ -268,8 +268,12 @@ const CountryList = () => {
   }, []);
 
   return (
-    <div className="m-3 sm:w-100 md:w-75 mx-auto">
-      <select className="form-select" name="countries" id="">
+    <div className="m-3 sm:w-100 w-75 mx-auto">
+      <select
+        className="form-select"
+        name="countries"
+        id=""
+        onChange={(e) => props.setContryCode(e.target.value)}>
         <option selected>Select a country</option>
         {countries.map((country, index) => {
           return <option value={country.code}>{country.name}</option>;

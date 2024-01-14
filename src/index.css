@@ -36,3 +36,13 @@ body {
 .card-body {
   height: 150px;
 }
+
+@media (max-width: 576px) {
+  .w-sm-100 {
+      width: 100% !important;
+  }
+
+  .card {
+    width: 90%;
+  }
+}

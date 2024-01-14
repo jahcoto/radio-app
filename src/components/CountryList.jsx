@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const CountryList = (props) => {
   const countries = [
-    { code: "BD", name: "Bangladesh" },
+    // code: 'BD', name: 'Bangladesh'
     // BE: "Belgium",
     // BF: "Burkina Faso",
     // BG: "Bulgaria",
@@ -12,18 +12,18 @@ const CountryList = (props) => {
     // BL: "Saint Barthelemy",
     // BM: "Bermuda",
     // BN: "Brunei",
-    // BO: "Bolivia",
+    { code: 'BO', name: 'Bolivia' },
     // BH: "Bahrain",
     // BI: "Burundi",
     // BJ: "Benin",
     // BT: "Bhutan",
-    // JM: "Jamaica",
+    { code: 'JM', name: 'Jamaica' },
     // BV: "Bouvet Island",
     // BW: "Botswana",
     // WS: "Samoa",
     // BQ: "Bonaire, Saint Eustatius and Saba ",
     // BR: "Brazil",
-    // BS: "Bahamas",
+    { code: 'BS', name: 'Bahamas' },
     // JE: "Jersey",
     // BY: "Belarus",
     // BZ: "Belize",
@@ -38,7 +38,7 @@ const CountryList = (props) => {
     // TK: "Tokelau",
     // GW: "Guinea-Bissau",
     // GU: "Guam",
-    // GT: "Guatemala",
+    { code: 'GT', name: 'Guatemala' },
     // GS: "South Georgia and the South Sandwich Islands",
     // GR: "Greece",
     // GQ: "Equatorial Guinea",
@@ -51,7 +51,7 @@ const CountryList = (props) => {
     // GD: "Grenada",
     // GB: "United Kingdom",
     // GA: "Gabon",
-    // SV: "El Salvador",
+    { code: 'SV', name: 'El Salvador' },
     // GN: "Guinea",
     // GM: "Gambia",
     // GL: "Greenland",
@@ -64,7 +64,7 @@ const CountryList = (props) => {
     // HT: "Haiti",
     // HU: "Hungary",
     // HK: "Hong Kong",
-    // HN: "Honduras",
+    { code: 'HN', name: 'Honduras' },
     // HM: "Heard Island and McDonald Islands",
     // VE: "Venezuela",
     // PR: "Puerto Rico",
@@ -88,7 +88,7 @@ const CountryList = (props) => {
     // EE: "Estonia",
     // EG: "Egypt",
     // ZA: "South Africa",
-    // EC: "Ecuador",
+    { code: 'EC', name: 'Ecuador' },
     // IT: "Italy",
     // VN: "Vietnam",
     // SB: "Solomon Islands",
@@ -96,7 +96,7 @@ const CountryList = (props) => {
     // SO: "Somalia",
     // ZW: "Zimbabwe",
     // SA: "Saudi Arabia",
-    // ES: "Spain",
+    { code: 'ES', name: 'Spain' },
     // ER: "Eritrea",
     // ME: "Montenegro",
     // MD: "Moldova",
@@ -133,7 +133,7 @@ const CountryList = (props) => {
     // FK: "Falkland Islands",
     // FM: "Micronesia",
     // FO: "Faroe Islands",
-    // NI: "Nicaragua",
+    { code: 'NI', name: 'Nicaragua' },
     // NL: "Netherlands",
     // NO: "Norway",
     // NA: "Namibia",
@@ -150,22 +150,22 @@ const CountryList = (props) => {
     // XK: "Kosovo",
     // CI: "Ivory Coast",
     // CH: "Switzerland",
-    // CO: "Colombia",
+    { code: 'CO', name: 'Colombia' },
     // CN: "China",
     // CM: "Cameroon",
-    // CL: "Chile",
+    { code: 'CL', name: 'Chile' },
     // CC: "Cocos Islands",
-    // CA: "Canada",
+    { code: 'CA', name: 'Canada' },
     // CG: "Republic of the Congo",
     // CF: "Central African Republic",
     // CD: "Democratic Republic of the Congo",
     // CZ: "Czech Republic",
     // CY: "Cyprus",
     // CX: "Christmas Island",
-    // CR: "Costa Rica",
+    { code: 'CR', name: 'Costa Rica' },
     // CW: "Curacao",
     // CV: "Cape Verde",
-    // CU: "Cuba",
+    { code: 'CU', name: 'Cuba' },
     // SZ: "Swaziland",
     // SY: "Syria",
     // SX: "Sint Maarten",
@@ -179,7 +179,7 @@ const CountryList = (props) => {
     // KM: "Comoros",
     // ST: "Sao Tome and Principe",
     // SK: "Slovakia",
-    // KR: "South Korea",
+    { code: 'KR', name: 'South Korea' },
     // SI: "Slovenia",
     // KP: "North Korea",
     // KW: "Kuwait",
@@ -192,7 +192,7 @@ const CountryList = (props) => {
     // SG: "Singapore",
     // SE: "Sweden",
     // SD: "Sudan",
-    // DO: "Dominican Republic",
+    { code: 'DO', name: 'Dominican Republic' },
     // DM: "Dominica",
     // DJ: "Djibouti",
     // DK: "Denmark",
@@ -200,7 +200,7 @@ const CountryList = (props) => {
     // DE: "Germany",
     // YE: "Yemen",
     // DZ: "Algeria",
-    // US: "United States",
+    { code: 'US', name: 'United States' },
     // UY: "Uruguay",
     // YT: "Mayotte",
     // UM: "United States Minor Outlying Islands",
@@ -240,7 +240,7 @@ const CountryList = (props) => {
     // AO: "Angola",
     // AQ: "Antarctica",
     // AS: "American Samoa",
-    // AR: "Argentina",
+    { code: 'AR', name: 'Argentina' },
     // AU: "Australia",
     // AT: "Austria",
     // AW: "Aruba",
@@ -255,10 +255,10 @@ const CountryList = (props) => {
   ];
 
   const countryList = async () => {
-    const url = "http://country.io/names.json";
+    const url = 'http://country.io/names.json';
     const response = await fetch(url, {
-      method: "GET",
-      mode: "no-cors",
+      method: 'GET',
+      mode: 'no-cors',
     });
     console.log(response.json);
   };
@@ -268,15 +268,23 @@ const CountryList = (props) => {
   }, []);
 
   return (
-    <div className="m-3 sm:w-100 w-75 mx-auto">
+    <div className="m-3 px-3 w-sm-100 w-75 mx-auto">
       <select
         className="form-select"
         name="countries"
         id=""
-        onChange={(e) => props.setContryCode(e.target.value)}>
-        <option selected>Select a country</option>
+        // eslint-disable-next-line react/prop-types
+        onChange={(e) => props.setCountryCode(e.target.value)}
+      >
+        <option selected value={''}>
+          Select a Country
+        </option>
         {countries.map((country, index) => {
-          return <option value={country.code}>{country.name}</option>;
+          return (
+            <option value={country.code} key={index}>
+              {country.name}
+            </option>
+          );
         })}
       </select>
     </div>

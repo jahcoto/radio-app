@@ -1,41 +1,42 @@
-import { useEffect, useState } from "react";
-import { RadioBrowserApi } from "radio-browser-api";
-import AudioPlayer from "react-h5-audio-player";
-import "react-h5-audio-player/lib/styles.css";
-import CountryList from "./CountryList";
-import img from "../img/radio.jpg";
+import { useEffect, useState } from 'react';
+import { RadioBrowserApi } from 'radio-browser-api';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+import CountryList from './CountryList';
+import img from '../img/radio.jpg';
 
 const Radio = () => {
-  const [stationType, setStationType] = useState("all");
-  const [stations, setStations] = useState("");
-  const [countryCode, setCountryCode] = useState("");
-  const setupApi = async (stationType) => {
-    const api = new RadioBrowserApi(fetch.bind(window), "Radio Player");
+  const [stationType, setStationType] = useState('all');
+  const [stations, setStations] = useState('');
+  const [countryCode, setCountryCode] = useState('');
+
+  const setupApi = async (countryCode) => {
+    const api = new RadioBrowserApi(fetch.bind(window), 'Radio Player');
     const stations = await api.searchStations({
       tag: stationType,
       limit: 32,
       countryCode: countryCode,
     });
-    // console.log(stations);
+    console.log(countryCode);
 
     setStations(stations);
   };
   const types = [
-    "all",
-    "classical",
-    "country",
-    "dance",
-    "disco",
-    "house",
-    "jazz",
-    "pop",
-    "rap",
-    "retro",
-    "rock",
+    'all',
+    'classical',
+    'country',
+    'dance',
+    'disco',
+    'house',
+    'jazz',
+    'pop',
+    'rap',
+    'retro',
+    'rock',
   ];
 
   useEffect(() => {
-    setupApi(stationType);
+    setupApi(countryCode);
     console.log(countryCode);
   }, [countryCode]);
 
@@ -60,13 +61,13 @@ const Radio = () => {
           );
         })}
       </div> */}
-      <div>
+      <div className="container">
         <div className="row mx-auto">
           {stations &&
             stations.map((station, index) => {
               return (
                 <div className="col col-lg-3 col-md-6 col-sm-12" key={index}>
-                  <div className="card sm:w-100">
+                  <div className="card">
                     <img
                       style={{ width: 80, height: 80 }}
                       className="card-img-top"
@@ -85,8 +86,8 @@ const Radio = () => {
                         layout="stacked"
                         customProgressBarSection={[]}
                         customControlsSection={[
-                          "MAIN_CONTROLS",
-                          "VOLUME_CONTROLS",
+                          'MAIN_CONTROLS',
+                          'VOLUME_CONTROLS',
                         ]}
                         autoPlayAfterSrcChange={false}
                       />
